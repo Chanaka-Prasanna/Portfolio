@@ -9,12 +9,16 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
+import { dataProvider } from "./rest-data-provider";
 
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
+import { BlogPostList } from "./pages/blog-posts/blogpost-list";
+import { BlogPostShow } from "./pages/blog-posts/show-blog";
+import { BlogPostEdit } from "./pages/blog-posts/edit-blog";
+import { BlogPostCreate } from "./pages/blog-posts/create-blog";
 
 const App: React.FC = () => {
   return (
@@ -51,10 +55,10 @@ const App: React.FC = () => {
                 element={<NavigateToResource resource="blog_posts" />}
               />
               <Route path="blog-posts">
-                <Route index element={<AntdInferencer />} />
-                <Route path="show/:id" element={<AntdInferencer />} />
-                <Route path="edit/:id" element={<AntdInferencer />} />
-                <Route path="create" element={<AntdInferencer />} />
+                <Route index element={<BlogPostList />} />
+                <Route path="show/:id" element={<BlogPostShow />} />
+                <Route path="edit/:id" element={<BlogPostEdit />} />
+                <Route path="create" element={<BlogPostCreate />} />
               </Route>
               <Route path="*" element={<ErrorComponent />} />
             </Route>
