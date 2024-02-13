@@ -4,6 +4,7 @@ import {
   useNotificationProvider,
   ErrorComponent,
   RefineThemes,
+  AuthPage,
 } from "@refinedev/antd";
 import routerBindings, {
   NavigateToResource,
@@ -19,6 +20,28 @@ import { BlogPostList } from "./pages/blog-posts/blogpost-list";
 import { BlogPostShow } from "./pages/blog-posts/show-blog";
 import { BlogPostEdit } from "./pages/blog-posts/edit-blog";
 import { BlogPostCreate } from "./pages/blog-posts/create-blog";
+import authProvider from "./authProvider";
+
+//  to test
+import axios from "axios";
+import createAuthRefreshInterceptor from "axios-auth-refresh";
+const axiosInstance = axios.create();
+
+// Function that will be called to refresh authorization
+const refreshAuthLogic = (failedRequest: any) =>
+  axiosInstance
+    .post(`https://api.fake-rest.refine.dev/auth/token/refresh`)
+    .then((tokenRefreshResponse) => {
+      localStorage.setItem("token", tokenRefreshResponse.data.token);
+
+      failedRequest.response.config.headers["Authorization"] =
+        "Bearer " + tokenRefreshResponse.data.token;
+
+      return Promise.resolve();
+    });
+
+// Instantiate the interceptor
+createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic);
 
 const App: React.FC = () => {
   return (
@@ -26,7 +49,11 @@ const App: React.FC = () => {
       <ConfigProvider theme={RefineThemes.Blue}>
         <Refine
           routerProvider={routerBindings}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          authProvider={authProvider}
+          dataProvider={dataProvider(
+            "https://api.fake-rest.refine.dev",
+            axiosInstance
+          )}
           notificationProvider={useNotificationProvider}
           resources={[
             {
@@ -35,6 +62,10 @@ const App: React.FC = () => {
               show: "/blog-posts/show/:id",
               create: "/blog-posts/create",
               edit: "/blog-posts/edit/:id",
+              // this meta property enable delete button on both edit page and show page
+              meta: {
+                canDelete: true,
+              },
             },
           ]}
           options={{

@@ -9,6 +9,9 @@ import {
   DateField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
+import { DeleteButton } from "@refinedev/antd";
+import { FilterDropdown, useSelect } from "@refinedev/antd";
+import { Select } from "antd";
 
 export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
   //  use table automatically reads the resources that coming from url
@@ -27,6 +30,10 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     },
   });
 
+  const { selectProps: categorySelectProps } = useSelect({
+    resource: "categories",
+  });
+
   return (
     <List title="Blog Posts">
       {/**
@@ -36,7 +43,7 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
        * rowKey="id" -> Used id as unique key for each row record
        */}
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title="Id" />
+        <Table.Column dataIndex="id" title="Id" sorter />
         <Table.Column dataIndex="title" title="Title" />
         <Table.Column
           dataIndex="content"
@@ -57,6 +64,16 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
               // matches the current cell's "id" (foreign key).
             )
           }
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Category"
+                {...categorySelectProps}
+              />
+            </FilterDropdown>
+          )}
         />
         <Table.Column dataIndex="status" title="Status" />
         <Table.Column
@@ -71,6 +88,7 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
             <Space>
               <EditButton hideText size="small" recordItemId={record.id} />
               <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton hideText size="small" recordItemId={record.id} />
             </Space>
           )}
         />
