@@ -4,14 +4,16 @@ import axios from "axios";
 const axiosInstance = axios.create();
 
 const mockUsers = [
-  { email: "john@mail.com", roles: ["admin"], token: "123" },
-  { email: "jane@mail.com", roles: ["editor"], token: "456" },
+  { email: "chanaka1@mail.com", roles: ["admin"], token: "123", pwd: "123" },
+  { email: "chanaka2@mail.com", roles: ["editor"], token: "456", pwd: "123" },
 ];
 
 const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     // Suppose we actually send a request to the back end here.
-    const user = mockUsers.find((item) => item.email === email);
+    const user = mockUsers.find(
+      (item) => item.email === email && item.pwd === password
+    );
 
     if (user) {
       localStorage.setItem("auth", JSON.stringify(user));
@@ -102,7 +104,7 @@ const authProvider: AuthProvider = {
 
     return null;
   },
-  register: async ({ email, roles, token }) => {
+  register: async ({ email, roles, token, pwd }) => {
     const user = mockUsers.find((user) => user.email === email);
 
     if (user) {
@@ -115,7 +117,7 @@ const authProvider: AuthProvider = {
       };
     }
 
-    mockUsers.push({ email, roles, token });
+    mockUsers.push({ email, roles, token, pwd });
 
     return {
       success: true,

@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import {
   ThemedLayoutV2,
   useNotificationProvider,
@@ -7,6 +7,7 @@ import {
   AuthPage,
 } from "@refinedev/antd";
 import routerBindings, {
+  CatchAllNavigate,
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
@@ -85,11 +86,34 @@ const App: React.FC = () => {
                 index
                 element={<NavigateToResource resource="blog_posts" />}
               />
-              <Route path="blog-posts">
+              <Route
+                path="blog-posts"
+                element={
+                  <Authenticated
+                    key="blog-posts"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <Outlet />
+                  </Authenticated>
+                }
+              >
                 <Route index element={<BlogPostList />} />
                 <Route path="show/:id" element={<BlogPostShow />} />
                 <Route path="edit/:id" element={<BlogPostEdit />} />
                 <Route path="create" element={<BlogPostCreate />} />
+              </Route>
+              <Route
+                element={<Authenticated key="auth" fallback={<Outlet />} />}
+              >
+                <Route path="/login" element={<AuthPage />} />
+                <Route
+                  path="/register"
+                  element={<AuthPage type="register" />}
+                />
+                <Route
+                  path="/forgot-password"
+                  element={<AuthPage type="forgotPassword" />}
+                />
               </Route>
               <Route path="*" element={<ErrorComponent />} />
             </Route>
