@@ -35,23 +35,9 @@ const authProvider: AuthProvider = {
     };
   },
   check: async () => {
-    const user = localStorage.getItem("auth");
+    const token = localStorage.getItem("auth");
 
-    if (user) {
-      return {
-        authenticated: true,
-      };
-    }
-
-    return {
-      authenticated: false,
-      logout: true,
-      redirectTo: "/login",
-      error: {
-        message: "Check failed",
-        name: "Unauthorized",
-      },
-    };
+    return { authenticated: Boolean(token) };
   },
   logout: async () => {
     localStorage.removeItem("auth");

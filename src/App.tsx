@@ -4,7 +4,6 @@ import {
   useNotificationProvider,
   ErrorComponent,
   RefineThemes,
-  AuthPage,
 } from "@refinedev/antd";
 import routerBindings, {
   CatchAllNavigate,
@@ -26,6 +25,7 @@ import authProvider from "./authProvider";
 //  to test
 import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
+import { AuthPage } from "./components/auth";
 const axiosInstance = axios.create();
 
 // Function that will be called to refresh authorization
@@ -47,7 +47,7 @@ createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic);
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <ConfigProvider theme={RefineThemes.Blue}>
+      <ConfigProvider theme={RefineThemes.Magenta}>
         <Refine
           routerProvider={routerBindings}
           authProvider={authProvider}
@@ -102,21 +102,16 @@ const App: React.FC = () => {
                 <Route path="edit/:id" element={<BlogPostEdit />} />
                 <Route path="create" element={<BlogPostCreate />} />
               </Route>
-              <Route
-                element={<Authenticated key="auth" fallback={<Outlet />} />}
-              >
-                <Route path="/login" element={<AuthPage />} />
-                <Route
-                  path="/register"
-                  element={<AuthPage type="register" />}
-                />
-                <Route
-                  path="/forgot-password"
-                  element={<AuthPage type="forgotPassword" />}
-                />
-              </Route>
-              <Route path="*" element={<ErrorComponent />} />
             </Route>
+            <Route element={<Authenticated key="auth" fallback={<Outlet />} />}>
+              <Route path="/login" element={<AuthPage />} />
+              <Route path="/register" element={<AuthPage type="register" />} />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+            </Route>
+            <Route path="*" element={<ErrorComponent />} />
           </Routes>
           <UnsavedChangesNotifier />
         </Refine>
