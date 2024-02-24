@@ -1,9 +1,5 @@
 import { Authenticated, Refine } from "@refinedev/core";
-import {
-  useNotificationProvider,
-  ErrorComponent,
-  RefineThemes,
-} from "@refinedev/antd";
+import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import routerBindings, {
   CatchAllNavigate,
   NavigateToResource,
@@ -30,8 +26,8 @@ import { ThemedLayoutV2 } from "./components/admin/layout";
 import { ThemedHeaderV2 } from "./components/admin/layout/header";
 import { ThemedSiderV2 } from "./components/admin/layout/sider";
 import { ThemedTitleV2 } from "./components/admin/layout/title";
-import HomePage from "./pages/Portfoio";
-import NavBar from "./components/portfolio/nav-bar";
+import HomePage from "./pages/Portfoio/Home";
+import { RefineThemes } from "./antd-config/config";
 const axiosInstance = axios.create();
 
 // Function that will be called to refresh authorization
@@ -53,7 +49,7 @@ createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic);
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <ConfigProvider theme={RefineThemes.Magenta}>
+      <ConfigProvider theme={RefineThemes.Green}>
         <AntdApp>
           <DevtoolsProvider>
             <Refine

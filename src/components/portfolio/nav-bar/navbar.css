@@ -1,0 +1,6 @@
+.menu-item {
+  width: 100px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
