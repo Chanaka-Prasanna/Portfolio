@@ -68,7 +68,7 @@ const Footer = () => {
         <Flex justify="center">
           <Typography.Text>
             {" "}
-            {`Copyright ©2024 All rights reserved `}/////
+            {`Copyright ©2024 All rights reserved `}
           </Typography.Text>
         </Flex>
       </Layout.Footer>

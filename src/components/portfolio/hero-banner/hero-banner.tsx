@@ -5,6 +5,7 @@ import profile from "../../../assets/my-photo/MyProfile.jpeg";
 import { getWindowSize } from "../../../utils/get-window-size";
 import { styles } from "./styles";
 import { lightenHexColor } from "../../../utils/generete-lighter-color";
+import { ReactTyped  } from "react-typed";
 
 const { useToken } = theme;
 
@@ -36,7 +37,7 @@ const HeroBanner: React.FC = () => {
           xl={16}
         >
           <div>
-            <Title level={screen === "smaller" ? 2 : 1}>Hi, I'm Chanaka.</Title>
+            <Title level={screen === "smaller" ? 2 : 1}>Hi, I'm <ReactTyped style={{color:token.colorPrimary}} strings={["Chanaka."]} typeSpeed={180} backSpeed={50} loop/> </Title>
             <Title level={screen === "smaller" ? 4 : 3}>
               Software Engineer
             </Title>

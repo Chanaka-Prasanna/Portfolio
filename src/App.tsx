@@ -49,7 +49,7 @@ createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic);
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <ConfigProvider theme={RefineThemes.Green}>
+      <ConfigProvider theme={RefineThemes.Magenta}>
         <AntdApp>
           <DevtoolsProvider>
             <Refine
