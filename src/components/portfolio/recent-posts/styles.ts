@@ -1,9 +1,11 @@
 export const styles = {
-  mainDiv: {
-    padding: "10% 18% 10% 18%",
+  mainSection: {
+    padding: "2% 18%",
+    minHeight: "600px",
   },
-  mainDivMobile: {
-    padding: "10px 10% 3% 10%",
+  mainSectionMobile: {
+    padding: "2% 6%",
+    minHeight: "600px",
   },
 
   //paragraph

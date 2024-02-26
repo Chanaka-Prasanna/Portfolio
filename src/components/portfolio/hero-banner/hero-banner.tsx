@@ -5,7 +5,6 @@ import profile from "../../../assets/my-photo/MyProfile.jpeg";
 import { getWindowSize } from "../../../utils/get-window-size";
 import { styles } from "./styles";
 import { lightenHexColor } from "../../../utils/generete-lighter-color";
-import { screenBreakPoint } from "../../../utils/screen-break-point";
 
 const { useToken } = theme;
 

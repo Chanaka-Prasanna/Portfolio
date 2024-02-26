@@ -14,6 +14,7 @@ type TokenConfig = {
   fontSizeHeading2: number;
   fontSizeHeading3: number;
   fontSizeHeading4: number;
+  borderRadiusLG: number;
 };
 
 type RefineThemes = Record<ThemeNames, ThemeConfig>;
@@ -23,6 +24,7 @@ const commonTokenConfig: TokenConfig = {
   fontSizeHeading2: 30,
   fontSizeHeading3: 35,
   fontSizeHeading4: 25,
+  borderRadiusLG: 1,
 };
 
 export const RefineThemes: RefineThemes = {
@@ -64,7 +66,7 @@ export const RefineThemes: RefineThemes = {
   },
   Green: {
     token: {
-      colorPrimary: "#52C41A",
+      colorPrimary: "#00af54",
       ...commonTokenConfig,
     },
   },
