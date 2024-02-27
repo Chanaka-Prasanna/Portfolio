@@ -1,8 +1,6 @@
-import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
-import { useGetIdentity } from "@refinedev/core";
 import { ConfigProvider, Drawer, Layout, Typography, theme } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { ColorModeContext } from "../../../contexts/color-mode";
+
 import {
   BookOutlined,
   DesktopOutlined,
@@ -11,7 +9,6 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { getWindowSize } from "../../../utils/get-window-size";
-import { screenBreakPoint } from "../../../utils/screen-break-point";
 
 const { Text } = Typography;
 const { useToken } = theme;
@@ -70,9 +67,9 @@ export const NavBar: React.FC = () => {
           components: {
             Menu: {
               activeBarHeight: 0, // to remove  border of menu item
-              horizontalLineHeight: "64px",
+              horizontalLineHeight: "80px",
               // menu
-              // itemBg: "red", // color of menu
+              itemBg: "#000000", // color of menu
 
               // item
 
@@ -95,8 +92,9 @@ export const NavBar: React.FC = () => {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
-            height: "64px",
+            height: "80px",
             padding: "0 15%",
+            borderBottom: `1px solid ${token.colorPrimary}`,
           }}
         >
           {menuItems.map((item) => (

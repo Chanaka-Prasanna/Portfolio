@@ -29,6 +29,7 @@ import { ThemedTitleV2 } from "./components/admin/layout/title";
 import HomePage from "./pages/Portfoio/Home";
 import { RefineThemes } from "./antd-config/config";
 const axiosInstance = axios.create();
+import { useState } from "react";
 
 // Function that will be called to refresh authorization
 const refreshAuthLogic = (failedRequest: any) =>
@@ -49,7 +50,7 @@ createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic);
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <ConfigProvider theme={RefineThemes.Magenta}>
+      <ConfigProvider theme={RefineThemes.Blue}>
         <AntdApp>
           <DevtoolsProvider>
             <Refine

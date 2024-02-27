@@ -10,9 +10,11 @@ export const styles = {
 
   paragraph: {
     width: "90%",
+    color: "#ffffff",
   },
   paragraphMobile: {
     width: "100%",
     textAlign: "justify",
+    color: "#ffffff",
   },
 };
