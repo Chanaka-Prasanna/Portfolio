@@ -12,6 +12,7 @@ import { ConfigProvider, Divider, Flex, Layout, Typography, theme } from "antd";
 import React from "react";
 import { styles } from "./styles";
 import { EmailField } from "@refinedev/antd";
+import { backgroundColor } from "../../../antd-config/config";
 const { useToken } = theme;
 
 const Footer = () => {
@@ -24,16 +25,17 @@ const Footer = () => {
         components: {
           Layout: {
             footerPadding: "3% 10%",
+            footerBg: backgroundColor,
           },
         },
       }}
     >
       <Layout.Footer>
-        {" "}
-        <Divider />
-        <Flex vertical={false} justify="center" gap="large">
+        <Divider style={{ borderColor: "white" }} />
+
+        {/* Centered content */}
+        <Flex align="center" justify="center" gap="large">
           <Link href="">
-            {" "}
             <FacebookFilled
               style={{ ...styles.icon, color: token.colorPrimary }}
             />
@@ -41,15 +43,14 @@ const Footer = () => {
           <Link href="https://www.linkedin.com/in/chanaka-prasanna/">
             <LinkedinFilled
               style={{ ...styles.icon, color: token.colorPrimary }}
-            />{" "}
+            />
           </Link>
           <Link href="https://github.com/Chanaka-Prasanna">
-            {" "}
             <GithubOutlined
               style={{ ...styles.icon, color: token.colorPrimary }}
-            />{" "}
+            />
           </Link>
-          <Link href="">
+          {/* <Link href="">
             <MailFilled style={{ ...styles.icon, color: token.colorPrimary }} />
           </Link>
           <Link
@@ -61,13 +62,15 @@ const Footer = () => {
             <WhatsAppOutlined
               style={{ ...styles.icon, color: token.colorPrimary }}
             />
-          </Link>
+          </Link> */}
 
-          <br></br>
+          {/* <br></br> is not needed for centering */}
         </Flex>
-        <Flex justify="center">
-          <Typography.Text>
-            {" "}
+
+        {/* Copyright text already centered within Flex with justify="center" */}
+
+        <Flex justify="center" style={{ marginTop: "15px" }}>
+          <Typography.Text style={{ color: "#ffffff", textAlign: "center" }}>
             {`Copyright ©2024 All rights reserved `}
           </Typography.Text>
         </Flex>

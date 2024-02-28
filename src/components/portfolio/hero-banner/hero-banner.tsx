@@ -15,6 +15,9 @@ import { getWindowSize } from "../../../utils/get-window-size";
 import { styles } from "./styles";
 import { lightenHexColor } from "../../../utils/generete-lighter-color";
 import { ReactTyped } from "react-typed";
+import { backgroundColor } from "../../../antd-config/config";
+import ButtonWithBg from "../../button/button-color-bg";
+import { ArrowDownOutlined } from "@ant-design/icons";
 
 const { useToken } = theme;
 
@@ -38,7 +41,7 @@ const HeroBanner: React.FC = () => {
       theme={{
         components: {
           Layout: {
-            bodyBg: "#00000f",
+            bodyBg: backgroundColor,
           },
         },
       }}
@@ -133,7 +136,11 @@ const HeroBanner: React.FC = () => {
           <Col>
             <div>
               {/* Your download button */}
-              <Button type="primary">Download Resume</Button>
+              <ButtonWithBg
+                color={token.colorPrimary}
+                text="Download Resume"
+                icon={<ArrowDownOutlined />}
+              />
             </div>
           </Col>
         </Row>
