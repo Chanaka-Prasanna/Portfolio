@@ -1,9 +1,11 @@
 export const styles = {
   mainDiv: {
     padding: "10% 18% 10% 18%",
+    height: "100vh",
   },
   mainDivMobile: {
-    padding: "10px 10% 3% 10%",
+    padding: "20% 10% 3% 10%",
+    height: "100vh",
   },
 
   //paragraph
@@ -16,5 +18,13 @@ export const styles = {
     width: "100%",
     textAlign: "justify",
     color: "#ffffff",
+  },
+  //title
+  titleHero: {
+    color: "#ffffff",
+  },
+  titleHeroMobile: {
+    color: "#ffffff",
+    paddingTop: "60px",
   },
 };

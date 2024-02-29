@@ -41,7 +41,7 @@ const HeroBanner: React.FC = () => {
       theme={{
         components: {
           Layout: {
-            bodyBg: backgroundColor,
+            // bodyBg: backgroundColor,
           },
         },
       }}
@@ -61,9 +61,12 @@ const HeroBanner: React.FC = () => {
           >
             <div>
               <Title
-                style={{
-                  color: "white",
-                }}
+                className="titleHero"
+                style={
+                  screen === "smaller"
+                    ? styles.titleHeroMobile
+                    : styles.titleHero
+                }
                 level={screen === "smaller" ? 2 : 1}
               >
                 Hi, I'm{" "}
